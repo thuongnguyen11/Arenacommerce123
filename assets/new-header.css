@@ -1,0 +1,170 @@
+  .row {
+      padding: 0 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 97px;
+  }
+
+  /* .column {
+      margin: 10px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+  } */
+
+  .logo {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100px;
+      height: 31px;
+  }
+
+  .icon-logo {
+      width: 100%;
+      height: 100%;
+  }
+
+  .menu-header {
+      display: flex;
+      list-style: none;
+      font-weight: 500;
+      font-size: 20px;
+  }
+
+  .item-menu {
+      padding: 0 10px;
+      font-size: 15px;
+      font-weight: 400;
+  }
+
+  .item-menu:hover {
+      color: #ff6e00;
+      text-decoration: underline;
+  }
+
+  .item-menu:hover a {
+      color: #ff6e00;
+  }
+
+  .item-menu a {
+      text-decoration: none;
+  }
+
+  .icon {
+      display: flex;
+      align-items: center;
+  }
+
+  .padding-x {
+      padding: 0 10px;
+      position: relative;
+  }
+  .number {
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 3px;
+    background-color: #797979;
+    font-size: 11px;
+    text-align: center;
+    position: absolute;
+    top: -12px;
+    right: 2px;
+    color: #fff;
+
+  }
+
+  .btn-menu-header {
+      display: none;
+  }
+
+  .mobile-menu {
+      display: none;
+  }
+
+  .mobile-icons-header {
+      display: flex;
+      align-items: center;
+  }
+
+  .mobile-item-menu{
+    font-size: 15px;
+    font-weight: 400;
+    margin: 10px 0;
+  }
+
+  @media (max-width: 640px) {
+      .row {
+          height: 50px !important;
+          padding: 13px 16px;
+      }
+
+      .logo {
+          width: 74.19px;
+          height: 23px;
+      }
+      .icon {
+        padding-right:20px ;
+      }
+      .mobile-menu {
+          display: block;
+      }
+
+      .menu-header {
+          display: none;
+      }
+
+      .overlay {
+          display: flex;
+          height: 100%;
+          width: 0;
+          position: fixed;
+          z-index: 1;
+          top: 0;
+          right: 0;
+          background-color: #fff;
+          overflow-x: hidden;
+          transition: 0.5s;
+          justify-content: flex-start;
+      }
+
+      .overlay-content {
+          position: relative;
+          top: 0;
+          width: 80%;
+          text-align: left;
+          margin-top: 20px;
+      }
+
+      .overlay a {
+          padding: 8px;
+          text-decoration: none;
+          font-size: 14px;
+          color: #000;
+          display: block;
+          transition: 0.3s;
+      }
+
+      .overlay a:hover,
+      .overlay a:focus {
+          color: #f1f1f1;
+      }
+
+      .overlay .closebtn {
+          position: absolute;
+          font-size: 30px;
+          width: 20%;
+          top: 5px;
+          right: -36px;
+      }
+
+      .btn-menu-header {
+          background-color: transparent;
+          display: block;
+          position: absolute;
+          top: 5px;
+          right: 5px;
+      }
+  }

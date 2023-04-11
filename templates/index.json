@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "featured_collection": {
+      "type": "featured-collection",
+      "disabled": true,
+      "settings": {
+        "title": "Featured products",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "collection": "all",
+        "products_to_show": 8,
+        "columns_desktop": 4,
+        "full_width": false,
+        "show_view_all": true,
+        "view_all_style": "solid",
+        "enable_desktop_slider": false,
+        "color_scheme": "background-1",
+        "image_ratio": "adapt",
+        "show_secondary_image": true,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_quick_add": false,
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 44,
+        "padding_bottom": 36
+      }
+    },
+    "acfcf0c7-1d0f-4855-adc5-67e96a816ea0": {
+      "type": "content-banner",
+      "settings": {
+        "content-position": "center"
+      }
+    }
+  },
+  "order": [
+    "featured_collection",
+    "acfcf0c7-1d0f-4855-adc5-67e96a816ea0"
+  ]
+}

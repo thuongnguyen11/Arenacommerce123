@@ -1,0 +1,115 @@
+<div class="new-newsletter">
+  <h1 class="title-newsletter">{{section.settings.title-newsletter}}</h1>
+  <form class="email">
+    <input type="email" id="emails" name="emails" placeholder="Your e-mail address" class="input-email">
+    <button class="btn-subscribe">Subscribe</button>
+  </form>
+</div>
+
+<style>
+  .new-newsletter {
+    text-align: center;
+    margin: 80px 448px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .title-newsletter {
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 30.8px;
+    margin-bottom: 30px;
+    width: 704px;
+  }
+  .email {
+    display: flex;
+    justify-content: center;
+  }
+  .input-email {
+    height: 36px;
+    border-radius: 4px;
+    padding: 0 20px;
+    width: 360px;
+    font-size: 14px;
+    border: 1px solid transparent;
+    background-color: #F2F2F2;
+  }
+
+  .input-email::placeholder {
+    color: #191919;
+    font-size: 15px;
+  }
+  .btn-subscribe {
+    background-color: #ff6e00;
+    padding: 0 60px;
+    width: 191px;
+    height: 36px;
+    border-radius: 4px;
+    color: #fff;
+  }
+
+  @media (max-width: 640px) {
+    .new-newsletter {
+      margin: 40px 12px;
+    }
+    .title-newsletter {
+      font-size: 20px;
+      line-height: 22px;
+      margin-bottom: 36.5px;
+      width: 352px;
+    }
+    .email {
+      display: flex;
+      justify-content: center;
+    }
+    .input-email {
+      height: 36px;
+      border-radius: 4px;
+      padding: 0 20px;
+      width: 209px;
+      border: 1px solid transparent;
+      background-color: #F2F2F2;
+    }
+  
+    .input-email::placeholder {
+      color: #191919;
+      font-size: 15px;
+    }
+    .btn-subscribe {
+      background-color: #ff6e00;
+      padding: 6px 32px;
+      width: 141px;
+      font-size: 16px;
+      border-radius: 4px;
+      color: #fff;
+
+    }
+  
+  }
+</style>
+
+{% schema %}
+{
+  "name": "new-newsletter",
+  "settings": [
+    {
+      "id": "title-newsletter",
+      "type": "text",
+      "label": "Edit title newsletter",
+      "default": "Join our newsletter and get $20 for your first order"
+    }
+  ],
+  "presets": [
+    {
+      "name": "new-newsletter"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+

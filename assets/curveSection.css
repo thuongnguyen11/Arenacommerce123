@@ -1,0 +1,113 @@
+.curveSection {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background-color: #eff5fd;
+}
+
+/* for remove border line of SVG noteeeeeee */
+.curveSection svg {
+  background-color: white;
+  display: block;
+  line-height: 0;
+}
+/* for remove border line of SVG noteeeeeee */
+
+.curveSection__inner {
+  width: 100%;
+  margin: 0 auto;
+}
+.curveSection__inner .curveSection__title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1.1;
+  color: #232368;
+  margin-bottom: 66px;
+  text-align: center;
+}
+
+.curveSection__inner .curveSection__menu {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.curveSection__menu .curveSection__menu-option {
+  width: 25%;
+  padding: 24px 34px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.curveSection__menu-imgWrapper {
+  height: 132px;
+  width: 132px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #cdcdd6;
+  margin-bottom: 30px;
+}
+.curveSection__menu-imgOption {
+  height: 116px;
+  width: 116px;
+  border-radius: 100%;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.curveSection__menu-imgOption img {
+  width: 60px;
+  height: 60px;
+}
+.curveSection__menu-titleOption {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 1.4;
+  text-align: center;
+  color: #232368;
+}
+
+@media (max-width: 1024px) {
+  .curveSection__inner {
+    padding: 20px 16px;
+  }
+  .curveSection__inner .curveSection__menu {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .curveSection__menu .curveSection__menu-option {
+    width: 50%;
+    padding: 24px 34px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .curveSection__menu-imgWrapper {
+    height: 80px;
+    width: 80px;
+  }
+  .curveSection__menu-imgOption {
+    height: 70px;
+    width: 70px;
+  }
+  .curveSection__menu-imgOption svg {
+    width: 36px;
+    height: 36px;
+  }
+  .curveSection__inner .curveSection__title {
+    margin-bottom: 20px;
+  }
+}

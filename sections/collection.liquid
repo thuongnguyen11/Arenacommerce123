@@ -1,0 +1,117 @@
+<div>
+  <ul class="collection">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'custom-collection' %}
+          <li class="collection-item">
+            {% if block.settings['collection-image'] == blank %}
+              {{ 'collection-2' | placeholder_svg_tag }}
+            {% else %}
+              <img
+                class="item-image item-image-mobile"
+                src="{{block.settings.collection-image | image_url}}"
+              >
+            {% endif %}
+            <button class="btn_collection">{{ block.settings['button-content'] }}</button>
+          </li>
+      {% endcase %}
+    {% endfor %}
+  </ul>
+</div>
+
+<style>
+  .collection {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+  }
+  .collection-item {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    list-style-type: none;
+    width: 20%;
+    height: 352px;
+    padding: 1px 2px 2px 0;
+    align-items: center;
+  }
+
+  .btn_collection {
+    position: absolute;
+    padding: 5px 10px;
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    width: 120px;
+    border-radius: 5px;
+    bottom: 40px;
+  }
+
+  .item-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  @media (max-width: 640px) {
+    .collection {
+      overflow-x: scroll;
+      white-space: nowrap;
+    }
+    .collection-item {
+      height: 175px;
+      width: 159px;
+      margin: 0 1.5px 0 0px;
+    }
+    .item-image-mobile {
+      height: 175px !important;
+      width: 159px !important;
+    }
+    .btn_collection {
+      padding: 3px 20px;
+      font-size: 16px;
+      height: 34px;
+      bottom: 20px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "collection",
+  "settings": [],
+  "blocks": [
+    {
+      "name": "collection-item",
+      "type": "custom-collection",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "collection-image",
+          "label": "Edit collection image"
+        },
+        {
+          "type": "text",
+          "id": "button-content",
+          "label": "Collection Image",
+          "default": "Name collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "collection"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

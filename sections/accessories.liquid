@@ -1,0 +1,112 @@
+<div class="accessories">
+  {% if section.settings['bg-accessories'] == blank %}
+    <img
+      src="https://cdn.shopify.com/s/files/1/0744/2530/3338/files/phil-monte-fRNm4azug0I-unsplash_1.png?v=1680756385"
+      class="bg-accessories"
+    >
+  {% else %}
+    <img
+      src="{{section.settings['bg-accessories'] | image_url}}"
+      class="bg-accessories"
+    >
+  {% endif %}
+
+  <div class="content-accessories">
+    <h1 class="title-accessories">{{ section.settings['title-accessories'] }}</h1>
+    <div class="discover-more">{{ section.settings['discover-more'] }}</div>
+  </div>
+</div>
+
+<style>
+  .accessories {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    margin: 0 40px;
+  }
+  .bg-accessories {
+    width: 100%;
+    height: 250px;
+  }
+  .content-accessories {
+    position: absolute;
+    color: #fff;
+    top: 30%;
+    left: 0;
+    padding-left: 50px;
+    line-height: 55px;
+  }
+  .title-accessories {
+    font-size: 50px;
+    font-weight: 500;
+    padding-bottom: 30px;
+    letter-spacing: 0em;
+  }
+  .discover-more {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 29px;
+    letter-spacing: 0em;
+    text-decoration: underline;
+  }
+  @media (max-width: 640px) {
+    .accessories {
+      margin: 0 16px;
+    }
+    .bg-accessories {
+      height: 150px;
+    }
+    .content-accessories {
+      top: 42px;
+      left: 0;
+      padding-left: 20px;
+    }
+    .title-accessories {
+      font-size: 24px;
+      font-weight: 500;
+      padding-bottom: 10px;
+    }
+    .discover-more {
+      font-size: 14x;
+      font-weight: 400;
+      line-height: 22.4px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "accessories",
+  "settings": [
+    {
+      "id": "title-accessories",
+      "type": "text",
+      "label": "Title",
+      "default": "Luxurious Accessories "
+    },
+    {
+      "id": "discover-more",
+      "type": "text",
+      "label": "Edit text Discover more",
+      "default": "Discover more"
+    },
+    {
+      "id": "bg-accessories",
+      "type": "image_picker",
+      "label": "Background accessories"
+    }
+  ],
+  "presets": [
+    {
+      "name": "new-footer"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

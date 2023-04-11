@@ -1,0 +1,160 @@
+<div class="sub-banner">
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when 'sub-banner-item' %}
+        <div class="image">
+          {% if block.settings['sub-image-banner'] == blank %}
+            {{ 'image' | placeholder_svg_tag: bg-image }}
+          {% else %}
+            <img
+              class="bg-image"
+              src="{{block.settings.sub-image-banner | image_url}}"
+              width="100%"
+              height="100%"
+            >
+          {% endif %}
+
+          <div class="sub-content-banner text-white">
+            <div class="featured-text" style="color: {{block.settings['color-featured-text']}}">
+              {{ block.settings['featured-text'] }}
+            </div>
+            <div class="content" style="color: {{block.settings.color-sub-text}}">
+              {{ block.settings['sub-text'] }}
+            </div>
+          </div>
+        </div>
+    {% endcase %}
+  {% endfor %}
+</div>
+
+<style>
+  .sub-banner {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+  }
+  .image {
+    position: relative;
+    width: 50%;
+    height: 750px;
+    margin: 2px 1px 2px 0;
+  }
+  .bg-image {
+    border-radius: 5px;
+    object-fit: cover;
+  }
+
+  .sub-content-banner {
+    color: #000;
+    position: absolute;
+    bottom: 103px;
+    left: 40px;
+    overflow: hidden;
+  }
+
+  .featured-text {
+    font-size: 60px;
+    line-height: 66px;
+    width: 357px;
+    height: 247px;
+  }
+
+  .text-white {
+    color: #fff;
+  }
+  .content {
+    text-decoration: underline;
+    font-size: 18px;
+  }
+
+  @media (max-width: 640px) {
+    .sub-banner {
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .sub-content-banner {
+      width: 179px;
+      bottom: 35px;
+      left: 38px;
+    }
+
+    .featured-text {
+      font-size: 30px;
+      width: 179px;
+      height: 99px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 110%;
+      margin-bottom: 10px;
+    }
+    .image {
+      width: 100%;
+      height: 366px;
+      margin: 1px 0 1px 0;
+    }
+
+    .text-white {
+      color: #fff;
+    }
+    .content {
+      text-decoration: underline;
+      font-size: 14px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "sub-banner",
+  "settings": [],
+  "blocks": [
+    {
+      "name": "sub-banner-item",
+      "type": "sub-banner-item",
+      "settings": [
+        {
+          "id": "sub-image-banner",
+          "type": "image_picker",
+          "label": "Image"
+        },
+        {
+          "id": "featured-text",
+          "type": "text",
+          "label": "Featured content",
+          "default": "Looking for new shoes?"
+        },
+        {
+          "id": "sub-text",
+          "type": "text",
+          "label": "Sub-text",
+          "default": "Sneakers on sale"
+        },
+        {
+          "type": "color",
+          "id": "color-featured-text",
+          "label": "Color featured text",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "color-sub-text",
+          "label": "Color sub text",
+          "default": "#000000"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "sub-banner"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

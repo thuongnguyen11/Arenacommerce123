@@ -1,0 +1,205 @@
+<div class="new-footer">
+  <div class="social">
+    <hr class="break ">
+    <ul class="icons-footer">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'icon-social' %}
+            <li class="icon-footer">
+              {% if block.settings['social-image'] == blank %}
+                {{ 'image' | placeholder_svg_tag }}
+              {% else %}
+                <a href="{% if block.settings.social-link ==blank %} # {%else%}{{block.settings.social-link}} {%endif%}">
+                  <img src="{{block.settings.social-image | image_url}}" class="social-item">
+                </a>
+              {% endif %}
+            </li>
+        {% endcase %}
+      {% endfor %}
+    </ul>
+    <hr class="break ">
+  </div>
+  <div class="infomation">
+    <div class="copyright">{{ section.settings.copyright }}</div>
+    <ul class="payment-methods">
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when 'payment-method' %}
+            <li class="payment-method">
+              {% if block.settings['payment-image'] == blank %}
+                {{ 'image' | placeholder_svg_tag }}
+              {% else %}
+                <img src="{{block.settings.payment-image | image_url }}" class="payment-item">
+              {% endif %}
+            </li>
+        {% endcase %}
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="menu-footer">
+    <ul class="menu">
+      <li class="item-menu"><a href="#">Jacket & Coats</a></li>
+      <li class="item-menu"><a href="#">Loungewear</a></li>
+      <li class="item-menu"><a href="#">Polo shirts</a></li>
+    </ul>
+    <hr class="break-footer">
+  </div>
+</div>
+
+<style>
+  .new-footer {
+    padding: 80px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .social {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+  .icons-footer {
+    display: flex;
+    height: 19px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    top: 0;
+    margin: 0 40px;
+  }
+
+  .icon-footer {
+    padding: 0 20px;
+  }
+  .social-item {
+    width: auto;
+    height: auto;
+    max-width: 20px;
+    max-height: 20px;
+  }
+  .line {
+    border: 1px solid #e6e6e6;
+    color: red;
+  }
+  .break {
+    width: 590px;
+    text-align: center;
+    border-top: 1px solid #e6e6e6;
+    margin-top: 0;
+  }
+  .infomation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-top: 40px;
+  }
+  .copyright {
+    font-size: 12px;
+    font-weight: 400;
+  }
+  .payment-methods {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 321.5px;
+    height: 25px;
+  }
+  .payment-method {
+    padding: 0 4px;
+  }
+  .payment-item {
+    width: auto;
+    height: auto;
+    max-width: 28px;
+    max-height: 25px;
+  }
+  .menu-footer {
+    display: none;
+  }
+  @media (max-width: 640px) {
+    .new-footer {
+      padding: 80px 17px;
+      width: 100%;
+    }
+    .icons-footer {
+      margin: 0 30px;
+    }
+    .icon-footer {
+      padding: 0 10px;
+    }
+    .infomation {
+      display: none;
+    }
+    .menu-footer {
+      display: block;
+      width: 100%;
+    }
+    .menu {
+      display: flex;
+      padding: 39px 0;
+    }
+    .break-footer {
+      width: 100%;
+      text-align: center;
+      margin-top: 0;
+      border-top: 1px solid #e6e6e6;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "new-footer",
+  "settings": [
+    {
+      "id": "copyright",
+      "type": "text",
+      "label": "Copyright",
+      "default": "Copyright © 2023 arenacommerce. All Rights Reserved"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "payment-method",
+      "type": "payment-method",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "payment-image",
+          "label": "Edit payment image"
+        }
+      ]
+    },
+    {
+      "name": "icon-social",
+      "type": "icon-social",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "social-image",
+          "label": "Edit social image"
+        },
+        {
+          "type": "url",
+          "id": "social-link",
+          "label": "Add link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "new-footer"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

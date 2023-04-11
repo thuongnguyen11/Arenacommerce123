@@ -1,0 +1,137 @@
+<div class="display">
+  <ul class="three-banner">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'banner-item' %}
+          <li class="banner-item">
+            {% if block.settings['banner-image'] == blank %}
+              {{ 'image' | placeholder_svg_tag:item-image-banner }}
+            {% else %}
+              <img src="{{block.settings.banner-image | image_url}}" class="item-image-banner">
+            {% endif %}
+            <div class="title-3banner">
+              <div>{{ block.settings['title-banner'] }}</div>
+              <div class="sub-title-banner">{{ block.settings['sub-title-banner'] }}</div>
+            </div>
+          </li>
+      {% endcase %}
+    {% endfor %}
+  </ul>
+  {% if section.blocks != blank %}
+    <hr class="break-banner">
+  {% endif %}
+</div>
+<style>
+  .display {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+  }
+  .three-banner {
+    display: flex;
+    margin: 0 300px;
+    justify-content: center;
+    width: 100%;
+  }
+  .banner-item {
+    margin: 0 1px;
+    display: flex;
+    width: 332px;
+    height: 300px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .title-3banner {
+    text-align: center;
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: 500;
+  }
+  .sub-title-banner {
+    text-decoration: underline;
+    font-size: 14px;
+    padding: 10px;
+    font-weight: 400;
+  }
+  .break-banner {
+    width: 95%;
+    text-align: center;
+    margin-top: 150px;
+    border-top: 1px solid #E6E6E6;
+
+
+  }
+  @media (max-width: 640px) {
+    .display {
+      display: flex;
+      flex-direction: column;
+      padding: 25px 0 0 0;
+    }
+    .banner-item {
+      width: 212px;
+      height: auto;
+    }
+    .title-3banner {
+      font-size: 16px;
+    }
+    .sub-title-banner {
+      font-size: 13px;
+    }
+    .three-banner {
+      padding: 0 12px;
+      overflow-x: scroll;
+      justify-content: flex-start
+    }
+    .item-image-banner {
+      width: 212px;
+      height: 191px;
+    }
+    .break-banner{
+      margin-top: 40px;
+    }
+    
+  }
+</style>
+
+{% schema %}
+{
+  "name": "three-banners",
+  "settings": [],
+  "blocks": [
+    {
+      "name": "banner-item",
+      "type": "banner-item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "banner-image",
+          "label": "Edit banner image"
+        },
+        {
+          "type": "text",
+          "id": "title-banner",
+          "label": "Edit title banner",
+          "default": " Title banner"
+        },
+        {
+          "type": "text",
+          "id": "sub-title-banner",
+          "label": "Edit text show more",
+          "default": "Show more"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "collection"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
