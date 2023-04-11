@@ -43,6 +43,7 @@
   .item-menu:hover {
       color: #ff6e00;
       text-decoration: underline;
+      cursor:pointer;
   }
 
   .item-menu:hover a {
@@ -53,14 +54,16 @@
       text-decoration: none;
   }
 
-  .icon {
+  .icons-menu {
       display: flex;
       align-items: center;
   }
 
-  .padding-x {
+  .icon-menu {
       padding: 0 10px;
       position: relative;
+      cursor:pointer;
+
   }
   .number {
     border: 1px solid transparent;
@@ -105,13 +108,15 @@
           width: 74.19px;
           height: 23px;
       }
-      .icon {
+      .icons-menu {
         padding-right:20px ;
       }
       .mobile-menu {
           display: block;
       }
-
+       .mobile-item-menu {
+        padding: 7px 0;
+       }
       .menu-header {
           display: none;
       }
@@ -136,35 +141,30 @@
           width: 80%;
           text-align: left;
           margin-top: 20px;
+          padding-left: 10px;
       }
 
-      .overlay a {
+      .overlay button {
           padding: 8px;
-          text-decoration: none;
-          font-size: 14px;
-          color: #000;
           display: block;
           transition: 0.3s;
-      }
-
-      .overlay a:hover,
-      .overlay a:focus {
-          color: #f1f1f1;
+          background-color: transparent;
       }
 
       .overlay .closebtn {
           position: absolute;
           font-size: 30px;
           width: 20%;
-          top: 5px;
-          right: -36px;
+          top: -7px;
+          right: -6px;
       }
 
       .btn-menu-header {
           background-color: transparent;
           display: block;
           position: absolute;
-          top: 5px;
+          top: 16px;
           right: 5px;
+          cursor:pointer;
       }
   }

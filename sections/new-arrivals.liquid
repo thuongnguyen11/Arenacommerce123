@@ -39,56 +39,61 @@
   {% else %}
     <ul class="new-arrivals">
       {% for product in section.settings.collection.products %}
-        <li class="arrival">
-          <a href="#">
-            <div class="arrival-image">
-              <img src="{{product.featured_media | image_url}}" class="item-image">
-              <div class="tag">
-                <div class="new-tag">new</div>
-                {% if product.compare_at_price > product.price %}
-                  <div class="discount-tag">
-                    -
-                    {{-
-                      product.compare_at_price
-                      | minus: product.price
-                      | times: 100.0
-                      | divided_by: product.compare_at_price
-                      | round
-                    -}}
-                    %
+        {% for tag in product.tags %}
+          {% if tag == 'new' %}
+            <li class="arrival">
+              <a href="{{product.url}}">
+                <div class="arrival-image">
+                  <img src="{{product.featured_media | image_url}}" class="item-image">
+                  <div class="tag">
+                    <div class="new-tag">{{ tag }}</div>
+                    {% if product.compare_at_price > product.price %}
+                      <div class="discount-tag">
+                        -
+                        {{-
+                          product.compare_at_price
+                          | minus: product.price
+                          | times: 100.0
+                          | divided_by: product.compare_at_price
+                          | round
+                        -}}
+                        %
+                      </div>
+                    {% endif %}
                   </div>
-                {% endif %}
-              </div>
-  
-              <div class="btn-add-item">
-                <div class="btn-content">Add to cart</div>
-              </div>
-              <div class="arrival-icons">
-                <button class="icon-item">
-                  <img src="https://cdn.shopify.com/s/files/1/0744/2530/3338/files/heart-health-heart-healthcare-health-medical_2.png?v=1680747445">
-                </button>
-                <button class="icon-item">
-                  <img src="https://cdn.shopify.com/s/files/1/0744/2530/3338/files/Group_1.png?v=1680747445">
-                </button>
-                <button class="icon-item">
-                  <img src="https://cdn.shopify.com/s/files/1/0744/2530/3338/files/search-find-scan-magnifier-research_2.png?v=1680747445">
-                </button>
-              </div>
-            </div>
-            <div class="arrivals-content">
-              <div class="brand-name">{{ product.vendor }}</div>
-              <div class="description">{{ product.title }}</div>
-              <div class="price">
-                <div>{{ product.price | money }}</div>
-                <div class="cost">{{ product.compare_at_price | money }}</div>
-              </div>
-            </div>
-          </a>
-        </li>
+                  <button class="btn-add-item">
+                    {{ 'Add to cart' | link_to: section.settings['link-add-to-cart'], class: 'btn-content' }}
+                  </button>
+                  <div class="arrival-icons">
+                    <button class="icon-item">
+                      <img src="https://cdn.shopify.com/s/files/1/0744/2530/3338/files/heart-health-heart-healthcare-health-medical_2.png?v=1680747445">
+                    </button>
+                    <button class="icon-item">
+                      <img src="https://cdn.shopify.com/s/files/1/0744/2530/3338/files/Group_1.png?v=1680747445">
+                    </button>
+                    <button class="icon-item">
+                      <img src="https://cdn.shopify.com/s/files/1/0744/2530/3338/files/search-find-scan-magnifier-research_2.png?v=1680747445">
+                    </button>
+                  </div>
+                </div>
+                <div class="arrivals-content">
+                  <div class="brand-name">{{ product.vendor }}</div>
+                  <div class="description">{{ product.title }}</div>
+                  <div class="price">
+                    <div>{{ product.price | money }}</div>
+                    <div class="cost">{{ product.compare_at_price | money }}</div>
+                  </div>
+                </div>
+              </a>
+            </li>
+          {% endif %}
+        {% endfor %}
       {% endfor %}
     </ul>
   {% endif %}
-  <button class="show-more-arrivals">{{ section.settings['button-content'] }}</button>
+  <button class="show-more-arrivals">
+    {{ section.settings['button-content'] | link_to: section.settings['link-btn-show-more'] }}
+  </button>
   <hr class="break-section-arrivals">
 </div>
 
@@ -175,6 +180,10 @@
     height: 0px;
     transition: 0.5s ease;
     border-radius: 5px;
+    outline-width: 0;
+    opacity: 0;
+    display: flex;
+    align-items: center;
   }
   .btn-content {
     white-space: nowrap;
@@ -182,13 +191,14 @@
     font-size: 14px;
     position: absolute;
     overflow: hidden;
-    top: 50%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
   }
 
   .arrival:hover .btn-add-item {
+    opacity: 1;
     height: 30px;
     cursor: pointer;
   }
@@ -245,18 +255,19 @@
     border: 1px solid #000;
     background-color: transparent;
     width: 205px;
-    height: 30px;
-    padding: 10px 40px;
+    padding: 9px 40px;
     border-radius: 4px;
     text-align: center;
-    margin: 100px 0 80px 0;
+    margin: 41px 0 80px 0;
     font-size: 12px;
     overflow: hidden;
+
   }
   .break-section-arrivals{
     width:95%;
     text-align:center;
-    margin-bottom: 79px
+    margin-bottom: 79px;
+    border-top: 1px solid #e6e6e6;
   }
 
   @media (max-width: 640px) {
@@ -298,6 +309,8 @@
       padding: 4.5px 20px;
       margin: 10px 0;
       font-size: 14px;
+      margin: 7px 20px;
+
     }
     .break-section-arrivals {
       display: none;
@@ -331,6 +344,16 @@
       "id": "button-content",
       "label": "Edit text button",
       "default": "Show all new arrivals"
+    },
+    {
+      "type": "url",
+      "id": "link-add-to-cart",
+      "label": "Add link add to cart"
+    },
+    {
+      "type": "url",
+      "id": "link-btn-show-more",
+      "label": "Add link button"
     }
   ],
   "presets": [

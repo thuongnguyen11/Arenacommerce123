@@ -23,25 +23,22 @@
     {% endif %}
   </div>
   <ul class="menu-header" style="color: {{section.settings.color-menu}}">
-    {% for block in section.blocks %}
-      {% case block.type %}
-        {% when 'menu-item' %}
+    {% for link in section.settings.menu %}
           <li class="item-menu">
-            <a href="#">{{ block.settings['menu-item'] }}</a>
+            {{ link.title | link_to: link.links }}
           </li>
-      {% endcase %}
     {% endfor %}
   </ul>
   <div class="mobile-icons-header">
-    <div class="icon">
-      <a href="#" class="padding-x">
+    <div class="icons-menu">
+      <a href="#" class="icon-menu">
         <img src="https://cdn.shopify.com/s/files/1/0744/2530/3338/files/user-person-profile-account-contact_1.png?v=1680673442">
       </a>
-      <a href="#" class="padding-x">
+      <a href="#" class="icon-menu">
         <img src="https://cdn.shopify.com/s/files/1/0744/2530/3338/files/Vector.png?v=1680673457">
         <div class="number">0</div>
       </a>
-      <a href="#" class="padding-x">
+      <a href="#" class="icon-menu">
         <img src="https://cdn.shopify.com/s/files/1/0744/2530/3338/files/shopping-cart-cart-shopping-commerce-ecommerce_1.png?v=1680673447">
         <div class="number">6</div>
       </a>
@@ -53,14 +50,16 @@
             {% case block.type %}
               {% when 'mobile-menu-item' %}
                 <li class="mobile-item-menu">
-                  <a href="#">{{ block.settings['mobile-menu-item'] }}</a>
+                  {{ block.settings['mobile-menu-item'] | link_to: block.settings['mobile-item-link'] }}
                 </li>
             {% endcase %}
           {% endfor %}
         </ul>
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <button class="closebtn" onclick="closeNav()">
+          <img src="https://cdn.shopify.com/s/files/1/0744/2530/3338/files/x.png?v=1681192681">
+        </button>
       </div>
-      <button class="btn-menu-header" style="font-size:30px;cursor:pointer" onclick="openNav()">
+      <button class="btn-menu-header" onclick="openNav()">
         <img src="https://cdn.shopify.com/s/files/1/0744/2530/3338/files/Group_9.png?v=1681017676">
       </button>
     </div>
@@ -124,34 +123,14 @@
       "id": "hover-color-menu",
       "label": "Change hover color menu",
       "default": "#ff6e00"
-    }
-  ],
-  "blocks": [
-    {
-      "name": "menu-item",
-      "type": "menu-item",
-      "settings": [
-        {
-          "type": "text",
-          "id": "menu-item",
-          "label": "Add menu item",
-          "default": "Name item"
-        }
-      ]
     },
     {
-      "name": "mobile-menu-item",
-      "type": "mobile-menu-item",
-      "settings": [
-        {
-          "type": "text",
-          "id": "mobile-menu-item",
-          "label": "Add menu item",
-          "default": "Name item"
-        }
-      ]
+      "type": "link_list",
+      "id": "menu",
+      "label": "Change menu"
     }
   ],
+
   "presets": [
     {
       "name": "header"

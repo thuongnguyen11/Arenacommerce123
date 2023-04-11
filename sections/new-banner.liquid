@@ -3,27 +3,21 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <div class="banner">
-  {% comment %}
-    {% if section.settings['image-banner'] == blank %}
-      {{ 'collection-1' | placeholder_svg_tag }}
-    {% else %}
-      <img src="{{ section.settings.image-banner | image_url }}" class="bg-banner">
-    {% endif %}
-  {% endcomment %}
-  <ul class="my-slider">
+  
+  <div class="my-slider">
     {% for block in section.blocks %}
       {% case block.type %}
         {% when 'slide-item' %}
-          <li class="slide-item">
+          <div class="slide-item">
             {% if block.settings['image-banner'] == blank %}
               {{ 'image' | placeholder_svg_tag:bg-banner }}
             {% else %}
               <img src="{{block.settings.image-banner | image_url}}" class="bg-banner">
             {% endif %}
-          </li>
+          </div>
       {% endcase %}
     {% endfor %}
-  </ul>
+  </div>
 
   <div class="content-banner ">
     <div class="text-color-banner featured-content" style="color: {{section.settings['text-color-banner']}}">
@@ -33,10 +27,10 @@
       {{ section.settings['sub-text'] }}
     </p>
     <button class="button-banner" style="color: {{section.settings['text-color-btn']}}">
-      {{ section.settings.button1 }}
+      {{ section.settings.button1 | link_to: section.settings.link-button1}}
     </button>
     <button class="button-banner" style="color: {{section.settings['text-color-btn']}}">
-      {{ section.settings.button2 }}
+      {{ section.settings.button2 | link_to: section.settings.link-button2 }}
     </button>
   </div>
   <button class="btn-nextSlide">
@@ -121,9 +115,8 @@
   }
 
   .button-banner {
-    padding: 0 20px 0 20px;
+    padding: 7.5px 60px;
     width: 200px;
-    height: 36px;
     background-color: #fff;
     color: #000;
     border: 1px solid transparent;
@@ -133,6 +126,8 @@
     align-items: center;
     overflow: hidden;
     white-space: nowrap;
+    cursor: pointer;
+
   }
   .btn-nextSlide {
     position: absolute;
@@ -142,6 +137,7 @@
     width: 40px;
     height: 40px;
     border-radius: 4px 0 0 4px;
+    cursor:pointer;
   }
   .arrow {
     width: 30px;
@@ -167,9 +163,8 @@
     }
     .button-banner {
       font-size: 14px;
-      padding: 0 10px 0 10px;
+      padding: 7.5px 30px;
       width: 169px;
-      height:36px;
       text-align: center;
     }
 
@@ -197,20 +192,30 @@
     {
       "id": "sub-text",
       "type": "text",
-      "label": "Text",
+      "label": "Sub content",
       "default": "Use code “ss22” in cart to check the discount."
     },
     {
       "id": "button1",
       "type": "text",
-      "label": "Button1",
+      "label": "Left button name",
       "default": "Clothes on sale"
+    },
+    {
+      "type": "url",
+      "id": "link-button1",
+      "label": "Add link to left button"
     },
     {
       "id": "button2",
       "type": "text",
-      "label": "Button2",
+      "label": "Right button name",
       "default": " Shoes on sale"
+    },
+    {
+      "type": "url",
+      "id": "link-button2",
+      "label": "Add link to right button"
     },
     {
       "type": "color",

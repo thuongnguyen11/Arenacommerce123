@@ -12,7 +12,9 @@
                 src="{{block.settings.collection-image | image_url}}"
               >
             {% endif %}
-            <button class="btn_collection">{{ block.settings['button-content'] }}</button>
+            <button class="btn_collection">
+              {{ block.settings['button-content'] | link_to: block.settings['link-collection']}}
+            </button>
           </li>
       {% endcase %}
     {% endfor %}
@@ -47,6 +49,7 @@
     width: 120px;
     border-radius: 5px;
     bottom: 40px;
+    cursor: pointer;
   }
 
   .item-image {
@@ -98,6 +101,11 @@
           "id": "button-content",
           "label": "Collection Image",
           "default": "Name collection"
+        },
+        {
+          "id": "link-collection",
+          "type": "url",
+          "label": "Add link collection"
         }
       ]
     }
